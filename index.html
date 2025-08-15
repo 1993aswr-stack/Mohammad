@@ -1,51 +1,34 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>PS4 Restore Host for 9.00 FW</title>
-<link rel="stylesheet" href="../../style.css">
-<script src="int64.js"></script>
-<script src="rop.js"></script>
-<script src="kexploit.js"></script>
-<script src="webkit.js"></script>
+<html><head>
+<title>PS4 Restore Host to User's Guide</title>
+<link rel="stylesheet" href="../style.css">
 </head>
-<body onload="setTimeout(poc, 50);">
-<h1>PS4 Restore Host for 9.00 FW</h1>
+<body>
+<h1 id="msgs">PS4 Restore Host to User's Guide</h1>
 <hr>
 <br>
-<h1 id="msgs" style="font-size: 30px;margin-top: 77px;margin-bottom: 455px;">Loading Payload... Please Wait</h1>
-<h1 style="margin-top: 43px;">Designed by:<a href="https://twitter.com/GamerHack93" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@GamerHack93</a>A special thanks to all the devs on the scene.</h1>
+<h1 style="font-size: 18px;color: yellow;">Select Your Firmware</h1>
+<a href="505goldhen/index.html"><button class="btn" onmouseover="msgs.innerHTML='PS4 5.05 FW GoldHEN Host'" onmouseout="msgs.innerHTML='PS4 - PS5 Exploit Host by GamerHack'"> 5.05 FW GoldHEN </button></a>
+<a href="505/index.html"><button class="btn" onmouseover="msgs.innerHTML='PS4 5.05 FW Host v2.0'" onmouseout="msgs.innerHTML='PS4 - PS5 Exploit Host by GamerHack'"> 5.05 FW v2.0 </button></a>
+<br>
+<a href="672goldhen/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 6.72 FW GoldHEN Host with Automatic Exploitation'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 6.72 FW GoldHEN </button></a>
+<a href="672/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 6.72 FW Host v3.0'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 6.72 FW v3.0 </button></a>
+<a href="702/payload.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 7.02 FW Host v1.4'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 7.02 FW v1.4 </button></a>
+<a href="75x/payload.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 7.50 - 7.55 FW Host v1.5'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 7.50 - 7.55 FW v1.5 </button></a>
+<br>
+<a href="900goldhen/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 9.00 FW GoldHEN Host - FontFaceSet Webkit'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 9.00 FW GoldHEN </button></a>
+<a href="900v2/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 9.00 FW Host v2.8 with Manual Exploitation - FontFaceSet Webkit'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 9.00 FW v2.8 | Manual </button></a>
+<a href="900v3/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 9.00 FW Host v3.0 with Automatic Exploitation - FontFaceSet Webkit'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 9.00 FW v3.0 | Auto </button></a>
+<br>
+<a href="900goldhen_psfree/index.html"><button class="btn" onmouseover="msgs.innerHTML='Restore PS4 9.00 FW GoldHEN Host - Psfree Webkit'" onmouseout="msgs.innerHTML='PS4 Restore Host to User&#8217;s Guide'"> 9.00 GoldHEN | Psfree </button></a>
+<br>
+<a href="../index.html"><button class="btn"> Return </button></a>
+<br>
+<h1 style="margin-top: 214px;">Designed by:<a href="https://twitter.com/GamerHack93" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@GamerHack93</a>A special thanks to all the devs on the scene.</h1>
 <script>
-function allset(){
-msgs.innerHTML = LoadedMSG
-}
-
-function load_poc(){
- var req = new XMLHttpRequest();
- req.responseType = "arraybuffer";
- req.open('GET', PLfile);
- req.send();
- req.onreadystatechange = function () {
-  if (req.readyState == 4) {
-   PLD = req.response;
-   var payload_buffer = chain.syscall(477, 0, PLD.byteLength*4 , 7, 0x1002, -1, 0);
-   var pl = p.array_from_address(payload_buffer, PLD.byteLength*4);
-   var padding = new Uint8Array(4 - (req.response.byteLength % 4) % 4);
-   var tmp = new Uint8Array(req.response.byteLength + padding.byteLength);
-   tmp.set(new Uint8Array(req.response), 0);
-   tmp.set(padding, req.response.byteLength);
-   var shellcode = new Uint32Array(tmp.buffer);
-   pl.set(shellcode,0);
-   var pthread = p.malloc(0x10);
-   chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_buffer, 0);
-   allset();
-  }
- };
-}
-
-function jbdone(){
-LoadedMSG = "Payload Loaded ...";
-PLfile = "payload.bin";
-setTimeout(load_poc, 500);
+var jailbreak_start_date = localStorage.getItem("jailbreak_start_date");
+if (jailbreak_start_date !== null) {
+  localStorage.removeItem("jailbreak_start_date");
 }
 </script>
 </body>
